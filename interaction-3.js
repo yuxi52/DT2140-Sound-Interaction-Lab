@@ -52,14 +52,19 @@ bells.createDSP(audioContext, 1024)
 //==========================================================================================
 
 function accelerationChange(accx, accy, accz) {
-    if (accy < -8) {
-        playAudio();
-    }
 }
 
 function rotationChange(rotx, roty, rotz) {
-    let spos = rotx
-    dspNode.setParamValue("/englishBell/strikePosition", spos)
+    const phoneIsUpright = Math.abs(rotx) > 70;
+
+    if (phoneIsUpright && !bellHasRung) {
+        playAudio();
+        bellHasRung = true;
+    }
+
+    if (!phoneIsUpright) {
+        bellHasRung = false;
+    }
 }
 
 function mousePressed() {
