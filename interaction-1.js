@@ -10,7 +10,7 @@
 let dspNode = null;
 let dspNodeParams = null;
 let jsonParams = null;
-
+let hasTilted = false;
 // Change here to ("tuono") depending on your wasm file name
 const dspName = "drop";
 const instance = new FaustWasm2ScriptProcessor(dspName);
@@ -81,7 +81,6 @@ function deviceTurned() {
 function deviceShaken() {
     shaketimer = millis();
     statusLabels[0].style("color", "pink");
-    playAudio();
 }
 
 function getMinMaxParam(address) {
