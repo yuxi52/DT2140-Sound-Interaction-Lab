@@ -56,6 +56,13 @@ function accelerationChange(accx, accy, accz) {
 }
 
 function rotationChange(rotx, roty, rotz) {
+     if (Math.abs(roty) > 30 && !hasTilted) {
+        playAudio();
+        hasTilted = true;
+    }
+    if (Math.abs(roty) < 10) {
+        hasTilted = false;
+    }
 }
 
 function mousePressed() {
@@ -106,8 +113,8 @@ function playAudio() {
     // them printed on the console of your browser when you load the page)
     // For example if you change to a bell sound, here you could use "/churchBell/gate" instead of
     // "/thunder/rumble".
-    dspNode.setParamValue("/thunder/rumble", 1)
-    setTimeout(() => { dspNode.setParamValue("/thunder/rumble", 0) }, 100);
+    dspNode.setParamValue("/drop/rumble", 1)
+    setTimeout(() => { dspNode.setParamValue("/drop/rumble", 0) }, 100);
 }
 
 //==========================================================================================
