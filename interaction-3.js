@@ -36,26 +36,25 @@ bells.createDSP(audioContext, 1024)
 // Phone upright in portrait orientation:
 // acceleration Y becomes close to -9.8 or 9.8, depending on the device.
 function accelerationChange(accx, accy, accz) {
-    const phonePointsUp = accy < -8;
+    // Do nothing here
+}
 
-    // Trigger once when the phone is raised upright
+function rotationChange(rotx, roty, rotz) {
+    // Phone is upright when Rotation X is close to +/- 90 degrees
+    const phonePointsUp = Math.abs(rotx) > 70 && Math.abs(rotx) < 110;
+
     if (phonePointsUp && bellReady) {
         playBell();
         bellReady = false;
     }
 
-    // Reset only after the phone is lowered again
     if (!phonePointsUp) {
         bellReady = true;
     }
 }
 
-function rotationChange(rotx, roty, rotz) {
-}
-
-// Desktop test: click the webpage once
 function mousePressed() {
-    playBell();
+    // Do nothing: prevents the bell from playing when Turn On DSP is clicked
 }
 
 function deviceMoved() {
