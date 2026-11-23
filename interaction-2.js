@@ -52,13 +52,23 @@ brass.createDSP(audioContext, 1024)
 //==========================================================================================
 
 function accelerationChange(accx, accy, accz) {
-    // playAudio()
+    if (!dspNode || audioContext.state === "suspended") {
+        return;
+    }
+
+    // Phone screen faces you: Z represents forward/back movement
+    const movement = Math.abs(accz);
+
+    // Map movement strength to brass blowing pressure
+    let pressure = (movement - 0.3) / 5 * 0.8;
+
+    // Keep pressure between 0 and 0.8
+    pressure = Math.max(0, Math.min(0.8, pressure));
+
+    dspNode.setParamValue("/brass/blower/pressure", pressure);
 }
 
 function rotationChange(rotx, roty, rotz) {
-    let spos = rotz
-    dspNode.setParamValue("/brass/strikePosition", spos)
-
 }
 
 function mousePressed() {
@@ -74,9 +84,6 @@ function deviceTurned() {
     threshVals[1] = turnAxis;
 }
 function deviceShaken() {
-    shaketimer = millis();
-    statusLabels[0].style("color", "pink");
-    playAudio();
 }
 
 function getMinMaxParam(address) {
