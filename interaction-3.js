@@ -53,7 +53,7 @@ bells.createDSP(audioContext, 1024)
 
 function accelerationChange(accx, accy, accz) {
     if (accy < -8) {
-        playBell();
+        playAudio();
     }
 }
 
@@ -105,7 +105,8 @@ function playAudio(pressure) {
         return;
     }
     console.log(pressure)
-    dspNode.setParamValue("/bells/blower/pressure", pressure)
+    dspNode.setParamValue("/englishBell/gate", pressure)
+    setTimeout(() => { dspNode.setParamValue("/englishBell/gate", 0) }, 100);
 }
 
 //==========================================================================================
