@@ -98,14 +98,15 @@ function getMinMaxParam(address) {
 //==========================================================================================
 
 function playAudio() {
-    if (!dspNode) {
+    if (!dspNode || audioContext.state === "suspended") {
         return;
     }
-    if (audioContext.state === 'suspended') {
-        return;
-    }
-    dspNode.setParamValue("/brass/gate", 1)
-    setTimeout(() => { dspNode.setParamValue("/brass/gate", 0) }, 100);
+
+    dspNode.setParamValue("/brass/blower/pressure", 0.8);
+
+    setTimeout(() => {
+        dspNode.setParamValue("/brass/blower/pressure", 0);
+    }, 500);
 }
 
 //==========================================================================================
