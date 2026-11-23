@@ -111,7 +111,6 @@ function playAudio(pressure) {
     }
     console.log(pressure)
     dspNode.setParamValue("/englishBell/gate", pressure)
-    setTimeout(() => { dspNode.setParamValue("/englishBell/gate", 0) }, 100);
 }
 
 //==========================================================================================
