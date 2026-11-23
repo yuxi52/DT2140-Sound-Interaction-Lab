@@ -56,6 +56,9 @@ function accelerationChange(accx, accy, accz) {
 }
 
 function rotationChange(rotx, roty, rotz) {
+    let spos = rotz
+    dspNode.setParamValue("/englishBell/strikePosition", spos)
+
 }
 
 function mousePressed() {
