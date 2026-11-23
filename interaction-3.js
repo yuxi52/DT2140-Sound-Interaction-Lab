@@ -68,6 +68,7 @@ function rotationChange(rotx, roty, rotz) {
 }
 
 function mousePressed() {
+     playAudio()
 }
 
 function deviceMoved() {

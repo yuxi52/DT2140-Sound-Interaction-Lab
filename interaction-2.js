@@ -62,9 +62,7 @@ function rotationChange(rotx, roty, rotz) {
 }
 
 function mousePressed() {
-   userStartAudio().then(() => {
-        playAudio();
-    });
+  playAudio()
 }
 
 function deviceMoved() {
