@@ -59,7 +59,7 @@ function accelerationChange(accx, accy, accz) {
     // Phone screen faces you: Z represents forward/back movement
     const movement = Math.abs(accz);
 
-    // Map movement strength to brass blowing pressure
+    // Map acceleration from 10–15 to a blowing pressure of 0–0.8
     let pressure = (movement - 10) / 5 * 0.8;
 
     // Keep pressure between 0 and 0.8

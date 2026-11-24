@@ -56,10 +56,12 @@ function accelerationChange(accx, accy, accz) {
 }
 
 function rotationChange(rotx, roty, rotz) {
+    // Play once when the phone tilts past 30° in either direction around the Y axis
      if (Math.abs(roty) > 30 && !hasTilted) {
         playAudio();
         hasTilted = true;
     }
+    // Allow the next sound once the phone returns to within 10° of neutral
     if (Math.abs(roty) < 10) {
         hasTilted = false;
     }

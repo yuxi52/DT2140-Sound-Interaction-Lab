@@ -56,12 +56,12 @@ function accelerationChange(accx, accy, accz) {
 
 function rotationChange(rotx, roty, rotz) {
     const phoneIsUpright = Math.abs(rotx) > 70;
-
+ // Treat the phone as upright when its X-axis tilt exceeds 70° in either direction
     if (phoneIsUpright && !bellHasRung) {
         playAudio();
         bellHasRung = true;
     }
-
+// Allow the bell to ring again when the tilt returns to 70° or less
     if (!phoneIsUpright) {
         bellHasRung = false;
     }
