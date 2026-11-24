@@ -60,7 +60,7 @@ function accelerationChange(accx, accy, accz) {
     const movement = Math.abs(accz);
 
     // Map movement strength to brass blowing pressure
-    let pressure = (movement - 5) / 5 * 0.8;
+    let pressure = (movement - 10) / 5 * 0.8;
 
     // Keep pressure between 0 and 0.8
     pressure = Math.max(0, Math.min(0.8, pressure));
